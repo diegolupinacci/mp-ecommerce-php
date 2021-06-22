@@ -11,11 +11,44 @@
     $preference = new MercadoPago\Preference();
     // Crea un ítem en la preferencia
     $item = new MercadoPago\Item();
-    $item->title = 'Mi producto';
+    $item->id = 123;
+    $item->title = $_POST['title'];
+    $img = explode(".",$_POST['img']);
+    $item->picture_url = "http://".$_SERVER['SERVER_NAME'].$img[1].".jpg";
+    $item->description = "Dispositivo móvil de Tienda e-commerce";
     $item->quantity = 1;
-    $item->unit_price = 75.56;
+    $item->unit_price = $_POST['price'];
+    // Crear un pagador en la preferencia
+    $payer = new MercadoPago\Payer();
+    $payer->name = "Lalo";
+    $payer->surname = "Landa";
+    $payer->email = "test_user_63274575@testuser.com";
+    $payer->phone = array(
+        "area_code" => "11",
+        "number" => "22223333"
+      );
+    $payer->address = array(
+        "street_name" => "Falsa",
+        "street_number" => 123,
+        "zip_code" => "1111"
+      );
+
+    //Agregar a preferencias
+    $preference->back_urls = array(
+        "success" => "http://".$_SERVER['SERVER_NAME']."/success",
+        "failure" => "http://".$_SERVER['SERVER_NAME']."/failure",
+        "pending" => "http:/-".$_SERVER['SERVER_NAME']."/pending"
+    );
+    $preference->auto_return = "approved";
     $preference->items = array($item);
+    $preference->payer = $payer;
+    $preference->external_reference = "sebastian@ecommercefull.com";
+    //Guardar preferencia
     $preference->save();
+    // echo "<pre>";
+    // var_dump($preference);
+    // echo "</pre>";
+    // die;
 ?>
     <meta name="viewport" content="width=1024">
     <title>Tienda e-commerce</title>
@@ -151,11 +184,11 @@
                                             </h3>
                                         </div>
                                         <h3 >
-                                            <?php echo $_POST['price'] ?>
+                                            <?php echo "$".$_POST['price'] ?>
                                         </h3>
-                                        <h3 >
-                                            <?php echo "$" . $_POST['unit'] ?>
-                                        </h3>
+                                        <h4 >
+                                            <?php echo "Unidades disponibles: " . $_POST['unit'] ?>
+                                        </h4>
                                     </div>
                                     <button type="submit" class="mercadopago-button" formmethod="post"  onclick="checkout.open()">Pagar</button>
                                 </div>
