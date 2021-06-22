@@ -4,7 +4,9 @@
     require __DIR__ .  '/vendor/autoload.php';
     // Agrega credenciales
     MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
+    MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
 ?>
+<script src="https://www.mercadopago.com/v2/security.js" view="item"></script>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <?php
     // Crea un objeto de preferencia
@@ -20,6 +22,7 @@
     $item->unit_price = $_POST['price'];
     // Crear un pagador en la preferencia
     $payer = new MercadoPago\Payer();
+    $payer->id = "471923173";
     $payer->name = "Lalo";
     $payer->surname = "Landa";
     $payer->email = "test_user_63274575@testuser.com";
@@ -43,12 +46,14 @@
     $preference->items = array($item);
     $preference->payer = $payer;
     $preference->external_reference = "sebastian@ecommercefull.com";
+    $preference->payment_methods = array(
+        "excluded_payment_methods" => array(
+          array("id" => "amex")
+        ),
+        "installments" => 6
+        );
     //Guardar preferencia
     $preference->save();
-    // echo "<pre>";
-    // var_dump($preference);
-    // echo "</pre>";
-    // die;
 ?>
     <meta name="viewport" content="width=1024">
     <title>Tienda e-commerce</title>
