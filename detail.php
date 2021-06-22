@@ -17,14 +17,22 @@
     $item->unit_price = 75.56;
     $preference->items = array($item);
     $preference->save();
-    echo "<pre>";
-    var_dump($preference);
-    echo "</pre>";
-    die;
+    $preference->id;
 ?>
     <meta name="viewport" content="width=1024">
     <title>Tienda e-commerce</title>
+    <script>
+    // Agrega credenciales de SDK
+    const mp = new MercadoPago('APP_USR-7eb0138a-189f-4bec-87d1-c0504ead5626', {
+            locale: 'es-UY'
+    });
 
+    const checkout = mp.checkout({
+    preference: {
+        id: <?php $preference->id; ?>
+    }
+    });
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
     <script src="https://sdk.mercadopago.com/js/v2"></script>
@@ -151,7 +159,7 @@
                                             <?php echo "$" . $_POST['unit'] ?>
                                         </h3>
                                     </div>
-                                    <button type="submit" class="mercadopago-button" formmethod="post">Pagar</button>
+                                    <button type="submit" class="mercadopago-button" formmethod="post"  onclick="checkout.open()">Pagar</button>
                                 </div>
                             </div>
                         </div>
