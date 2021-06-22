@@ -1,12 +1,33 @@
 <!DOCTYPE html>
+<?php 
+    // SDK de Mercado Pago
+    require __DIR__ .  '/vendor/autoload.php';
+    // Agrega credenciales
+    MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
+?>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
+<?php
+    // Crea un objeto de preferencia
+    $preference = new MercadoPago\Preference();
+
+    // Crea un ítem en la preferencia
+    $item = new MercadoPago\Item();
+    $item->title = 'Mi producto';
+    $item->quantity = 1;
+    $item->unit_price = 75.56;
+    $preference->items = array($item);
+    $preference->save();
+    echo "<pre>";
+    var_dump($preference);
+    echo "</pre>";
+    die;
+?>
     <meta name="viewport" content="width=1024">
     <title>Tienda e-commerce</title>
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
-
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
