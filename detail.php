@@ -9,7 +9,6 @@
 <?php
     // Crea un objeto de preferencia
     $preference = new MercadoPago\Preference();
-
     // Crea un ítem en la preferencia
     $item = new MercadoPago\Item();
     $item->title = 'Mi producto';
@@ -17,7 +16,6 @@
     $item->unit_price = 75.56;
     $preference->items = array($item);
     $preference->save();
-    $preference->id;
 ?>
     <meta name="viewport" content="width=1024">
     <title>Tienda e-commerce</title>
@@ -29,7 +27,7 @@
 
     const checkout = mp.checkout({
     preference: {
-        id: <?php $preference->id; ?>
+        id: <?php echo $preference->id; ?>
     }
     });
     </script>
