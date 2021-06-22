@@ -40,12 +40,13 @@
     $preference->back_urls = array(
         "success" => "http://".$_SERVER['SERVER_NAME']."/success",
         "failure" => "http://".$_SERVER['SERVER_NAME']."/failure",
-        "pending" => "http:/-".$_SERVER['SERVER_NAME']."/pending"
+        "pending" => "http://".$_SERVER['SERVER_NAME']."/pending"
     );
     $preference->auto_return = "approved";
     $preference->items = array($item);
     $preference->payer = $payer;
     $preference->external_reference = "sebastian@ecommercefull.com";
+    $preference->notification_url = "https://felipe.ecommercefull.com/index.php?route=extension/module/testmp";
     $preference->payment_methods = array(
         "excluded_payment_methods" => array(
           array("id" => "amex")
