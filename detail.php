@@ -19,6 +19,7 @@
 ?>
     <meta name="viewport" content="width=1024">
     <title>Tienda e-commerce</title>
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script>
     // Agrega credenciales de SDK
     const mp = new MercadoPago('APP_USR-7eb0138a-189f-4bec-87d1-c0504ead5626', {
@@ -33,7 +34,6 @@
     </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
     <script
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
