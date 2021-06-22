@@ -27,7 +27,7 @@
 
     const checkout = mp.checkout({
     preference: {
-        id: <?php echo $preference->id; ?>
+        id: "<?php echo $preference->id; ?>"
     }
     });
     </script>
