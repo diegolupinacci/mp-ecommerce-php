@@ -6,73 +6,10 @@
     MercadoPago\SDK::setAccessToken('APP_USR-6317427424180639-042414-47e969706991d3a442922b0702a0da44-469485398');
     MercadoPago\SDK::setIntegratorId("dev_24c65fb163bf11ea96500242ac130004");
 ?>
-<script src="https://www.mercadopago.com/v2/security.js" view="item"></script>
 <html class="supports-animation supports-columns svg no-touch no-ie no-oldie no-ios supports-backdrop-filter as-mouseuser" lang="en-US"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<?php
-    // Crea un objeto de preferencia
-    $preference = new MercadoPago\Preference();
-    // Crea un ítem en la preferencia
-    $item = new MercadoPago\Item();
-    $item->id = 123;
-    $item->title = $_POST['title'];
-    $img = explode(".",$_POST['img']);
-    $item->picture_url = "http://".$_SERVER['SERVER_NAME'].$img[1].".jpg";
-    $item->description = "Dispositivo móvil de Tienda e-commerce";
-    $item->quantity = 1;
-    $item->unit_price = $_POST['price'];
-    // Crear un pagador en la preferencia
-    $payer = new MercadoPago\Payer();
-    $payer->id = "471923173";
-    $payer->name = "Lalo";
-    $payer->surname = "Landa";
-    $payer->email = "test_user_63274575@testuser.com";
-    $payer->phone = array(
-        "area_code" => "11",
-        "number" => "22223333"
-      );
-    $payer->address = array(
-        "street_name" => "Falsa",
-        "street_number" => 123,
-        "zip_code" => "1111"
-      );
 
-    //Agregar a preferencias
-    $preference->back_urls = array(
-        "success" => "http://".$_SERVER['SERVER_NAME']."/success.php",
-        "failure" => "http://".$_SERVER['SERVER_NAME']."/failure.php",
-        "pending" => "http://".$_SERVER['SERVER_NAME']."/pending.php"
-    );
-    $preference->auto_return = "approved";
-    $preference->items = array($item);
-    $preference->payer = $payer;
-    $preference->external_reference = "sebastian@ecommercefull.com";
-    $preference->notification_url = "http://sebastian.ecommercefull.com/notifications.php";
-    $preference->payment_methods = array(
-        "excluded_payment_methods" => array(
-          array("id" => "amex")
-        ),
-        "installments" => 6
-        );
-    //Guardar preferencia
-    $preference->save();
-?>
     <meta name="viewport" content="width=1024">
     <title>Tienda e-commerce</title>
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
-    <script>
-    // Agrega credenciales de SDK
-    const mp = new MercadoPago('APP_USR-7eb0138a-189f-4bec-87d1-c0504ead5626', {
-            locale: 'es-UY'
-    });
-
-    const checkout = mp.checkout({
-    preference: {
-        id: "<?php echo $preference->id; ?>"
-    }
-    });
-
-    console.log(<?php echo $preference->id; ?>);
-    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
     <script
@@ -130,80 +67,8 @@
                     </div>
                 </div>
             </div>
-            <div class="as-search-results as-filter-open as-category-landing as-desktop" id="as-search-results">
-
-                <div id="accessories-tab" class="as-accessories-details">
-                    <div class="as-accessories" id="as-accessories">
-                        <div class="as-accessories-header">
-                            <div class="as-search-results-count">
-                                <span class="as-search-results-value"></span>
-                            </div>
-                        </div>
-                        <div class="as-searchnav-placeholder" style="height: 77px;">
-                            <div class="row as-search-navbar" id="as-search-navbar" style="width: auto;">
-                                <div class="as-accessories-filter-tile column large-6 small-3">
-
-                                    <button class="as-filter-button" aria-expanded="true" aria-controls="as-search-filters" type="button">
-                                        <h2 class=" as-filter-button-text">
-                                            Smartphones
-                                        </h2>
-                                    </button>
-
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="as-accessories-results  as-search-desktop">
-                            <div class="width:60%">
-                                <div class="as-producttile-tilehero with-paddlenav " style="float:left;">
-                                    <div class="as-dummy-container as-dummy-img">
-
-                                        <img src="./assets/wireless-headphones" class="ir ir item-image as-producttile-image  " style="max-width: 70%;max-height: 70%;"alt="" width="445" height="445">
-                                    </div>
-                                    <div class="images mini-gallery gal5 ">
-                                    
-
-                                        <div class="as-isdesktop with-paddlenav with-paddlenav-onhover">
-                                            <div class="clearfix image-list xs-no-js as-util-relatedlink relatedlink" data-relatedlink="6|Powerbeats3 Wireless Earphones - Neighborhood Collection - Brick Red|MPXP2">
-                                                <div class="as-tilegallery-element as-image-selected">
-                                                    <div class=""></div>
-                                                    <img src="./assets/003.jpg" class="ir ir item-image as-producttile-image" alt="" width="445" height="445" style="content:-webkit-image-set(url(<?php echo $_POST['img'] ?>) 2x);">
-                                                </div>
-                                                
-                                            </div>
-
-                                            
-                                        </div>
-
-                                        
-
-                                    </div>
-
-                                </div>
-                                <div class="as-producttile-info" style="float:left;min-height: 168px;">
-                                    <div class="as-producttile-titlepricewraper" style="min-height: 128px;">
-                                        <div class="as-producttile-title">
-                                            <h3 class="as-producttile-name">
-                                                <p class="as-producttile-tilelink">
-                                                    <span data-ase-truncate="2"><?php echo $_POST['title'] ?></span>
-                                                </p>
-
-                                            </h3>
-                                        </div>
-                                        <h3 >
-                                            <?php echo "$".$_POST['price'] ?>
-                                        </h3>
-                                        <h4 >
-                                            <?php echo "Unidades disponibles: " . $_POST['unit'] ?>
-                                        </h4>
-                                    </div>
-                                    <button type="submit" class="mercadopago-button" formmethod="post"  onclick="checkout.open()">Pagar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div>
+            <h1> Pago fallido.</h1>
             </div>
         </div>
         <div role="alert" class="as-loader-text ally" aria-live="assertive"></div>
