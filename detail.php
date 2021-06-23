@@ -13,7 +13,7 @@
     $preference = new MercadoPago\Preference();
     // Crea un ítem en la preferencia
     $item = new MercadoPago\Item();
-    $item->id = 123;
+    $item->id = "1234";
     $item->title = $_POST['title'];
     $img = explode(".",$_POST['img']);
     $item->picture_url = "http://".$_SERVER['SERVER_NAME'].$img[1].".jpg";
@@ -49,7 +49,8 @@
     $preference->notification_url = "http://sebastian.ecommercefull.com/notifications.php";
     $preference->payment_methods = array(
         "excluded_payment_methods" => array(
-          array("id" => "amex")
+          array("id" => "amex"),
+          array("id" => "atm")
         ),
         "installments" => 6
         );
