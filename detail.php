@@ -70,8 +70,6 @@
         id: "<?php echo $preference->id; ?>"
     }
     });
-
-    console.log(<?php echo $preference->id; ?>);
     </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no">
